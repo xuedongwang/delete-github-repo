@@ -1,0 +1,29 @@
+{
+  "name": "delete-github-repo",
+  "version": "0.1.0",
+  "description": "delete github repositories by cli",
+  "main": "delete-github-repo",
+  "bin": {
+    "delete-github-repo": "./delete-github-repo.js"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/core": "^4.0.5",
+    "inquirer": "^8.2.4",
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
