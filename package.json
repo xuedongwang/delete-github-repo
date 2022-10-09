@@ -1,40 +1,16 @@
 {
-  "name": "delete-github-repo",
-  "version": "0.2.0",
-  "description": "delete github repositories by cli",
-  "main": "delete-github-repo",
-  "bin": {
-    "delete-github-repo": "./src/delete-github-repo.js",
-    "dgr": "./src/delete-github-repo.js"
-  },
+  "name": "delete-github-repo-docs",
+  "version": "0.1.0",
+  "description": "delete-github-repo 文档",
+  "main": "index.js",
   "scripts": {
-    "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint src/**/*.js --fix"
+    "build": "node ./src/index.js"
   },
   "keywords": [],
-  "author": "Xuedong Wang",
+  "author": "",
   "license": "MIT",
-  "dependencies": {
-    "@octokit/core": "^4.0.5",
-    "chalk": "^4.1.2",
-    "commander": "^9.4.1",
-    "inquirer": "^8.2.4",
-    "ora": "^5.4.1",
-    "semver": "^7.3.8"
-  },
-  "engines": {
-    "node": ">=12.0.0"
-  },
   "devDependencies": {
-    "@commitlint/cli": "^17.1.2",
-    "@commitlint/config-conventional": "^17.1.0",
-    "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.25.0",
-    "husky": "^8.0.1"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "ejs": "^3.1.8",
+    "marked": "^4.1.1"
   }
 }
