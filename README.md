@@ -3,6 +3,8 @@
 
 通过命令行批量、快捷删除`github`无用的仓库。
 
+## 项目主页
+[项目演示](https://xuedongwang.github.io/delete-github-repo/)
 
 ## Demo
 

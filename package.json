@@ -7,12 +7,30 @@
     "delete-github-repo": "./src/delete-github-repo.js",
     "dgr": "./src/delete-github-repo.js"
   },
+  "homepage": "https://xuedongwang.github.io/delete-github-repo/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xuedongwang/delete-github-repo"
+  },
+  "bugs": {
+    "url": "https://github.com/xuedongwang/delete-github-repo/issues",
+    "email": "email@wangxuedong.com"
+  },
   "scripts": {
+    "prepare": "husky install",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint src/**/*.js --fix"
   },
-  "keywords": [],
-  "author": "Xuedong Wang",
+  "keywords": [
+    "delete",
+    "delete github",
+    "delete repositories"
+  ],
+  "author": {
+    "name": "Xuedong Wang",
+    "email": "email@wangxuedong.com",
+    "url": "https://github.com/xuedongwang"
+  },
   "license": "MIT",
   "dependencies": {
     "@octokit/core": "^4.0.5",
