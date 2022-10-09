@@ -1,22 +1,51 @@
-![202209291126](https://github-1251661402.cos.ap-nanjing.myqcloud.com/png/WeChat55f7d1434fb8e4bc842230221d78fcdb.png)
-## 说明
-使用命令行批量快捷删除github仓库。
-## 演示
-### 视频演示
-[视频演示地址](https://github-1251661402.cos.ap-nanjing.myqcloud.com/video/202209291126.mp4)
-### 图片展示
+
+# delete-github-repo
+
+通过命令行批量、快捷删除`github`无用的仓库。
+
+
+## Demo
+
 ![202209291126](https://github-1251661402.cos.ap-nanjing.myqcloud.com/gif/202209291126.gif)
-## 使用
-### 安装
-```shell
-npm i delete-github-repo -g
+
+
+## Installation
+
+Install `delete-github-repo` with npm
+
+```bash
+npm install delete-github-repo
 ```
-### 使用
-```shell
-delete-github-repo
+    
+## Usage/Examples
+
+```bash
+delete-github-repo # 或者 dgr
 ```
-## feature
-- 更友好的提示
-- 国际化
-- 单元测试
-- 持续集成
+
+
+## Documentation
+
+[Documentation](https://linktodocumentation)
+
+
+## Features
+
+- 快捷
+- 安全
+
+
+
+## Badges
+
+![GitHub](https://img.shields.io/github/license/xuedongwang/delete-github-repo)
+
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/xuedongwang/delete-github-repo/master)
+
+![node-current](https://img.shields.io/node/v/delete-github-repo)
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+

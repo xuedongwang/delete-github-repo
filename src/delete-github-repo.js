@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const inquirer = require('inquirer');
+const semver = require('semver')
 const chalk = require('chalk');
 const pkg = require('../package.json');
 const spinner = require('./utils/spinner');
