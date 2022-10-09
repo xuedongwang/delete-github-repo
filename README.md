@@ -24,11 +24,6 @@ delete-github-repo # 或者 dgr
 ```
 
 
-## Documentation
-
-[Documentation](https://linktodocumentation)
-
-
 ## Features
 
 - 快捷

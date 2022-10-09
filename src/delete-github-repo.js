@@ -1,7 +1,9 @@
 #!/usr/bin/env node
-const inquirer = require('inquirer');
-const semver = require('semver')
+const checkNodeVersion = require('./utils/checkNodeVersion');
+checkNodeVersion();
+
 const chalk = require('chalk');
+const inquirer = require('inquirer');
 const pkg = require('../package.json');
 const spinner = require('./utils/spinner');
 const API = require('./utils/api');
@@ -9,6 +11,7 @@ const API = require('./utils/api');
 
 let api = null;
 let spinnerInstance = null;
+
 
 const { Command } = require('commander');
 const program = new Command();
