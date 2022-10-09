@@ -1,6 +1,6 @@
 {
   "name": "delete-github-repo",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "delete github repositories by cli",
   "main": "delete-github-repo",
   "bin": {
