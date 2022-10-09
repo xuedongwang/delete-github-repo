@@ -1,49 +1,22 @@
 #!/usr/bin/env node
 const inquirer = require('inquirer');
-const ora = require('ora');
-const { Octokit } = require('@octokit/core');
+const chalk = require('chalk');
+const pkg = require('../package.json');
+const spinner = require('./utils/spinner');
+const API = require('./utils/api');
 // https://github.com/settings/tokens/new
 
-let octokit = null;
+let api = null;
+let spinnerInstance = null;
 
-async function getOwer() {
-    const res = await octokit.request('GET /user', {});
-    return res.data.login;
-}
+const { Command } = require('commander');
+const program = new Command();
 
-async function deleteRepoByName(repo, owner) {
-    try {
-        await octokit.request('DELETE /repos/{owner}/{repo}', {
-            owner,
-            repo
-        });
-    } catch(err) {
-        throw err;
-    }
-}
+program
+  .description(pkg.description)
+  .version(pkg.version);
 
-function loading(text = 'loading') {
-    const spinner = ora();
-    spinner.start();
-    spinner.color = 'yellow';
-    spinner.text = text;
-    return spinner;
-}
-
-function getRepos() {
-    return new Promise((resolve, reject) => {
-        octokit.request('GET /user/repos', {})
-            .then(res => {
-                resolve(res.data.map(item => item.private ? `${item.name}(私有)`: item.name));
-            })
-            .catch(err => {
-                reject(err);
-            });
-    });
-}
-
-
-let loadingInstance = null;
+program.parse();
 
 inquirer
     .prompt([
@@ -63,19 +36,19 @@ inquirer
     ])
     .then(async (answers) => {
         const token = answers.token;
-        octokit = new Octokit({ auth: token });
+        api = new API(token);
 
-        loadingInstance = loading('正在获取仓库的ower');
-        const owner = await getOwer();
-        loadingInstance.succeed('获取仓库ower成功');
+        spinnerInstance = spinner('正在获取仓库所有者信息');
+        const owner = await api.getOwer();
+        spinnerInstance.succeed('获取仓库所有者信息成功');
     
-        loadingInstance = loading('正在获取仓库repos列表');
-        const repos = await getRepos();
+        spinnerInstance = spinner('正在获取仓库列表');
+        const repos = await api.getRepos();
         if (repos.length === 0) {
-            loadingInstance.warn('仓库数量为0，可能有以下原因:\n1.你当前的仓库都没private仓库并且传入的token可能没有勾选repo权限。2.你暂时没有创建仓库。\n可在：https://github.com/settings/tokens/new，重新生成token，请至少勾选 delete_repo 和 repo 两项权限。');
+            spinnerInstance.warn('仓库数量为0，可能有以下原因:\n1.你当前的仓库都没private仓库并且传入的token可能没有勾选[repo]权限。2.你暂时没有创建仓库。\n可在：https://github.com/settings/tokens/new，重新生成token，请至少勾选 delete_repo 和 repo 两项权限。');
             return;
         }
-        loadingInstance.succeed('获取仓库列表\n成功');
+        spinnerInstance.succeed('获取仓库列表成功');
 
         inquirer
             .prompt([
@@ -95,20 +68,26 @@ inquirer
                 }
             ])
             .then(async (answers) => {
-                for (let i = 0; i < answers.repos.length; i++) {
-                    loadingInstance = loading(`正在删除仓库${answers.repos[i]}`);
-                    await deleteRepoByName(answers.repos[i], owner);
-                    loadingInstance.succeed(`仓库${answers.repos[i]}删除成功`);
+                const reposCount = answers.repos.length;
+                for (let i = 0; i < reposCount; i++) {
+                    spinnerInstance = spinner(`正在删除仓库${answers.repos[i]}`);
+                    await api.deleteRepoByName(answers.repos[i], owner);
+                    spinnerInstance.succeed(`仓库${answers.repos[i]}删除成功`);
                 }
+                spinnerInstance.succeed(`任务执行完成，共删除${chalk.green(reposCount)}个仓库`);
             })
             .catch((error) => {
+                if (error.status === 403) {
+                    // delete_repo  repo
+                    spinnerInstance.fail('传入的token已过期或没勾选[delete_repo]权限，请重新生成。\n生成地址为：https://github.com/settings/tokens/new');
+                    return;
+                }
                 throw error;
             });
     })
     .catch((error) => {
         if (error.status === 401) {
-            // delete_repo  repo
-            loadingInstance.fail('传入的token已过期或没权限，请重新生成。\n生成地址为：https://github.com/settings/tokens/new\n请至少勾选 delete_repo 和 repo 两项权限。');
+            spinnerInstance.fail('传入的token已过期或没权限，请重新生成。\n生成地址为：https://github.com/settings/tokens/new\n请至少勾选 [delete_repo] 和 [repo] 两项权限。');
             return;
         }
         throw error;

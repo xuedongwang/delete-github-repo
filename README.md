@@ -15,11 +15,8 @@ npm i delete-github-repo -g
 ```shell
 delete-github-repo
 ```
-## todo
-- 容错处理
+## feature
 - 更友好的提示
 - 国际化
 - 单元测试
-- 自动继承
-- 代码规范统一
-- 提交记录规范
+- 持续集成

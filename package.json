@@ -4,17 +4,20 @@
   "description": "delete github repositories by cli",
   "main": "delete-github-repo",
   "bin": {
-    "delete-github-repo": "./src/delete-github-repo.js"
+    "delete-github-repo": "./src/delete-github-repo.js",
+    "dgr": "./src/delete-github-repo.js"
   },
   "scripts": {
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint src/**/*.js --fix"
   },
   "keywords": [],
-  "author": "",
+  "author": "Xuedong Wang",
   "license": "MIT",
   "dependencies": {
     "@octokit/core": "^4.0.5",
+    "chalk": "^4.1.2",
+    "commander": "^9.4.1",
     "inquirer": "^8.2.4",
     "ora": "^5.4.1"
   },
