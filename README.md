@@ -2,13 +2,12 @@
 # delete-github-repo
 
 通过命令行批量、快捷删除`github`无用的仓库。
+## 项目截图
+
+![202209291126](https://github-1251661402.cos.ap-nanjing.myqcloud.com/png/WeChat55f7d1434fb8e4bc842230221d78fcdb.png)
 
 ## 项目主页
 [项目演示](https://xuedongwang.github.io/delete-github-repo/)
-
-## Demo
-
-![202209291126](https://github-1251661402.cos.ap-nanjing.myqcloud.com/gif/202209291126.gif)
 
 
 ## Installation
