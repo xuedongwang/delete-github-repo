@@ -86,7 +86,7 @@ inquirer
                     spinnerInstance.fail('传入的token已过期或没勾选[delete_repo]权限，请重新生成。\n生成地址为：https://github.com/settings/tokens/new');
                     return;
                 }
-                throw error;
+                spinnerInstance.fail('网络错误，请重试');
             });
     })
     .catch((error) => {
@@ -94,5 +94,5 @@ inquirer
             spinnerInstance.fail('传入的token已过期或没权限，请重新生成。\n生成地址为：https://github.com/settings/tokens/new\n请至少勾选 [delete_repo] 和 [repo] 两项权限。');
             return;
         }
-        throw error;
+        spinnerInstance.fail('网络错误，请重试');
     });
